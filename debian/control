@@ -1,0 +1,54 @@
+Source: qt6-layer-shell
+Section: libs
+Maintainer: Cutie Shell Developers <admin@cutie-shell.org>
+Priority: optional
+Build-Depends: pkg-kde-tools,
+               cmake,
+               qt6-base-dev (>= 6.4.2-1+git~),
+               qt6-base-private-dev (>= 6.4.2-1+git~),
+               qt6-wayland (>= 6.4.2-1+git~),
+               qt6-wayland-dev,
+               qt6-wayland-private-dev,
+               qt6-declarative-dev (>= 6.4.2-1+git~),
+               extra-cmake-modules,
+               pkg-config,
+               libxkbcommon-dev,
+               wayland-protocols,
+               libwayland-bin,
+               libwayland-dev
+Standards-Version: 4.5.1
+
+Package: qt6-layer-shell
+Architecture: any
+Multi-Arch: foreign
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: use the Wayland wlr-layer-shell-unstable-v1 protocol - plugin
+ Qt component to allow applications to make use of the Wayland
+ wlr-layer-shell-unstable-v1 protocol.
+ .
+ This package contains the plugin.
+
+Package: liblayershellqtinterface6-dev
+Architecture: any
+Section: libdevel
+Depends: liblayershellqtinterface6 (= ${binary:Version}),
+         qtbase5-dev,
+         ${misc:Depends},
+         ${shlibs:Depends},
+Description: use the Wayland wlr-layer-shell-unstable-v1 protocol - development files
+ Qt component to allow applications to make use of the Wayland
+ wlr-layer-shell-unstable-v1 protocol.
+ .
+ This package includes the development files.
+
+Package: liblayershellqtinterface6
+Architecture: any
+Section: libs
+Depends: ${misc:Depends}, ${shlibs:Depends},
+Recommends: qt6-layer-shell (= ${binary:Version}),
+Description: use the Wayland wlr-layer-shell-unstable-v1 protocol - run-time library
+ Qt component to allow applications to make use of the Wayland
+ wlr-layer-shell-unstable-v1 protocol.
+ .
+ This package includes the library.
