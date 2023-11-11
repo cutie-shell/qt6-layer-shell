@@ -33,7 +33,7 @@ Package: liblayershellqtinterface6-dev
 Architecture: any
 Section: libdevel
 Depends: liblayershellqtinterface6 (= ${binary:Version}),
-         qtbase5-dev,
+         qt6-base-dev,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: use the Wayland wlr-layer-shell-unstable-v1 protocol - development files
