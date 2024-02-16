@@ -14,7 +14,7 @@ else()
     )
 endif()
 
-ecm_qt_declare_logging_category(LAYER_SHELL_SOURCES
+ecm_qt_declare_logging_category(LayerShellQtInterface
     HEADER
         layershellqt_logging.h
     IDENTIFIER

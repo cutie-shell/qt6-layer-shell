@@ -14,8 +14,8 @@ set(PROJECT_VERSION_MAJOR 6)
 
 set(CMAKE_C_STANDARD 99)
 
-set(QT_MIN_VERSION "6.4.0")
-set(KF6_MIN_VERSION "5.103.0")
+set(QT_MIN_VERSION "6.6.0")
+set(KF6_MIN_VERSION "5.240.0")
 set(KDE_COMPILERSETTINGS_LEVEL "5.82")
 
 set(QT_MAJOR_VERSION "6")
@@ -37,6 +37,7 @@ include(KDEClangFormat)
 include(ECMQtDeclareLoggingCategory)
 
 
+find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS WaylandClient Qml)
 find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS WaylandClient Qml)
 if (QT_MAJOR_VERSION EQUAL "5")
     find_package(Qt5XkbCommonSupport REQUIRED PRIVATE)
@@ -61,8 +62,8 @@ ecm_setup_version(${PROJECT_VERSION} VARIABLE_PREFIX LAYERSHELLQT
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 
-ecm_set_disabled_deprecation_versions(QT 5.15.2
-    KF 5.101
+ecm_set_disabled_deprecation_versions(QT 6.5
+    KF 5.240
 )
 
 add_subdirectory(src)
