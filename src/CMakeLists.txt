@@ -4,17 +4,13 @@
 remove_definitions(-DQT_NO_SIGNALS_SLOTS_KEYWORDS)
 
 add_library(LayerShellQtInterface6 SHARED)
-if (QT_MAJOR_VERSION EQUAL "5")
-    ecm_add_qtwayland_client_protocol(LAYER_SHELL_SOURCES PROTOCOL ${WaylandProtocols_DATADIR}/stable/xdg-shell/xdg-shell.xml BASENAME xdg-shell)
-    ecm_add_qtwayland_client_protocol(LAYER_SHELL_SOURCES PROTOCOL wlr-layer-shell-unstable-v1.xml BASENAME wlr-layer-shell-unstable-v1)
-else()
-    qt6_generate_wayland_protocol_client_sources(LayerShellQtInterface6 FILES
-        ${WaylandProtocols_DATADIR}/stable/xdg-shell/xdg-shell.xml
-        ${CMAKE_CURRENT_SOURCE_DIR}/wlr-layer-shell-unstable-v1.xml
-    )
-endif()
+qt6_generate_wayland_protocol_client_sources(LayerShellQtInterface6 FILES
+    ${WaylandProtocols_DATADIR}/stable/xdg-shell/xdg-shell.xml
+    ${WaylandProtocols_DATADIR}/staging/xdg-activation/xdg-activation-v1.xml
+    ${CMAKE_CURRENT_SOURCE_DIR}/wlr-layer-shell-unstable-v1.xml
+)
 
-ecm_qt_declare_logging_category(LayerShellQtInterface
+ecm_qt_declare_logging_category(LayerShellQtInterface6
     HEADER
         layershellqt_logging.h
     IDENTIFIER
@@ -23,12 +19,21 @@ ecm_qt_declare_logging_category(LayerShellQtInterface
         layershellqt
 )
 
-target_sources(LayerShellQtInterface6 PRIVATE qwaylandlayersurface.cpp interfaces/window.cpp interfaces/shell.cpp qwaylandlayershellintegration.cpp qwaylandlayershell.cpp ${LAYER_SHELL_SOURCES})
-target_link_libraries(LayerShellQtInterface6 PRIVATE Qt::Gui Qt::WaylandClient Qt::WaylandClientPrivate Wayland::Client PkgConfig::XKBCOMMON)
+target_sources(LayerShellQtInterface6 PRIVATE
+    qwaylandxdgactivationv1.cpp
+    qwaylandlayersurface.cpp
+    qwaylandlayershellintegration.cpp
+    interfaces/window.cpp
+    interfaces/shell.cpp
+)
+
+target_link_libraries(LayerShellQtInterface6 PUBLIC Qt::Gui)
+target_link_libraries(LayerShellQtInterface6 PRIVATE Qt::WaylandClientPrivate Wayland::Client PkgConfig::XKBCOMMON)
 if (TARGET Qt::XkbCommonSupportPrivate)
     target_link_libraries(LayerShellQtInterface6 PRIVATE Qt::XkbCommonSupportPrivate)
 endif()
 target_include_directories(LayerShellQtInterface6 PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/LayerShellQt>"
+                                                            "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
                                               INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/>"
 )
 
@@ -68,3 +73,5 @@ install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/LayerShellQt/layershellqt_export.h
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/LayerShellQt6 COMPONENT Devel
 )
+
+add_subdirectory(declarative)

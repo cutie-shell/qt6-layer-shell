@@ -52,3 +52,14 @@ Description: use the Wayland wlr-layer-shell-unstable-v1 protocol - run-time lib
  wlr-layer-shell-unstable-v1 protocol.
  .
  This package includes the library.
+
+Package: qml6-module-layershell
+Architecture: any
+Section: libs
+Depends: liblayershellqtinterface6 (= ${binary:Version}),
+Recommends: qt6-layer-shell (= ${binary:Version}),
+Description: use the Wayland wlr-layer-shell-unstable-v1 protocol - run-time library
+ Qml module to allow applications to make use of the Wayland
+ wlr-layer-shell-unstable-v1 protocol.
+ .
+ This package includes the qml module.

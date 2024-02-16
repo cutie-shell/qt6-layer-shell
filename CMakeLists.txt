@@ -4,24 +4,21 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(layershellqt6)
-
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-
-set(PROJECT_VERSION "6.27.80")
+set(PROJECT_VERSION "6.0.80")
 set(PROJECT_VERSION_MAJOR 6)
 
 set(CMAKE_C_STANDARD 99)
 
 set(QT_MIN_VERSION "6.6.0")
-set(KF6_MIN_VERSION "5.240.0")
+set(KF6_MIN_VERSION "5.107.0")
 set(KDE_COMPILERSETTINGS_LEVEL "5.82")
-
-set(QT_MAJOR_VERSION "6")
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
 find_package(ECM ${KF6_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${ECM_MODULE_PATH})
@@ -35,14 +32,10 @@ include(FeatureSummary)
 include(GenerateExportHeader)
 include(KDEClangFormat)
 include(ECMQtDeclareLoggingCategory)
+include(ECMQmlModule)
 
 
 find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS WaylandClient Qml)
-find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS WaylandClient Qml)
-if (QT_MAJOR_VERSION EQUAL "5")
-    find_package(Qt5XkbCommonSupport REQUIRED PRIVATE)
-    find_package(QtWaylandScanner REQUIRED)
-endif()
 find_package(WaylandScanner REQUIRED)
 find_package(Wayland 1.3 COMPONENTS Client Server)
 find_package(WaylandProtocols REQUIRED)
@@ -57,7 +50,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu90")
 ecm_setup_version(${PROJECT_VERSION} VARIABLE_PREFIX LAYERSHELLQT
                         VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/layershellqt_version.h"
                         PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/LayerShellQt6ConfigVersion.cmake"
-                        SOVERSION 6)
+                        SOVERSION ${PROJECT_VERSION_MAJOR})
 
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})

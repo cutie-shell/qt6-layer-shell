@@ -12,11 +12,11 @@ QML_DECLARE_TYPEINFO(LayerShellQt::Window, QML_HAS_ATTACHED_PROPERTIES)
 
 class Plugin : public QQmlExtensionPlugin
 {
-    Q_PLUGIN_METADATA(IID "org.kde.layershellqt")
+    Q_PLUGIN_METADATA(IID "LayerShell")
     Q_OBJECT
 public:
     void registerTypes(const char *uri) override {
-        Q_ASSERT(QLatin1String(uri) == QLatin1String("org.kde.layershell"));
+        Q_ASSERT(QLatin1String(uri) == QLatin1String("LayerShell"));
         qmlRegisterType<LayerShellQt::Window>(uri, 1, 0, "Window");
     }
 };
