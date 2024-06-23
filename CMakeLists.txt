@@ -63,7 +63,7 @@ add_subdirectory(src)
 #add_subdirectory(tests)
 
 set(CMAKECONFIG_INSTALL_DIR ${CMAKE_INSTALL_LIBDIR}/LayerShellQt6)
-install(EXPORT LayerShellQtTargets
+install(EXPORT LayerShellQt6Targets
         NAMESPACE LayerShellQt6::
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LayerShellQt6
         FILE LayerShellQt6Targets.cmake)

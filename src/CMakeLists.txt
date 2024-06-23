@@ -66,7 +66,7 @@ generate_export_header(LayerShellQtInterface6
 install(TARGETS layer-shell6
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/qt6/plugins/wayland-shell-integration)
 
-install(TARGETS LayerShellQtInterface6 EXPORT LayerShellQtTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS LayerShellQtInterface6 EXPORT LayerShellQt6Targets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
     ${LayerShellQt_HEADERS}
