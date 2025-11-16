@@ -2,64 +2,13 @@ Source: qt6-layer-shell
 Section: libs
 Maintainer: Cutie Shell Developers <admin@cutie-shell.org>
 Priority: optional
-Build-Depends: pkg-kde-tools,
-               cmake,
-               qt6-base-dev (>= 6.6),
-               qt6-base-private-dev (>= 6.6),
-               qt6-wayland (>= 6.6),
-               qt6-wayland-dev,
-               qt6-wayland-private-dev,
-               qt6-declarative-dev (>= 6.6),
-               extra-cmake-modules,
-               pkg-config,
-               libxkbcommon-dev,
-               wayland-protocols,
-               libwayland-bin,
-               libwayland-dev
+Build-Depends: pkg-kde-tools
 Standards-Version: 4.5.1
 
 Package: qt6-layer-shell
-Architecture: any
-Multi-Arch: foreign
-Pre-Depends: ${misc:Pre-Depends}
-Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: use the Wayland wlr-layer-shell-unstable-v1 protocol - plugin
- Qt component to allow applications to make use of the Wayland
- wlr-layer-shell-unstable-v1 protocol.
- .
- This package contains the plugin.
-
-Package: liblayershellqtinterface6-dev
-Architecture: any
-Section: libdevel
-Depends: liblayershellqtinterface6 (= ${binary:Version}),
-         qt6-base-dev,
-         ${misc:Depends},
-         ${shlibs:Depends},
-Description: use the Wayland wlr-layer-shell-unstable-v1 protocol - development files
- Qt component to allow applications to make use of the Wayland
- wlr-layer-shell-unstable-v1 protocol.
- .
- This package includes the development files.
-
-Package: liblayershellqtinterface6
-Architecture: any
-Section: libs
-Depends: ${misc:Depends}, ${shlibs:Depends},
-Recommends: qt6-layer-shell (= ${binary:Version}),
-Description: use the Wayland wlr-layer-shell-unstable-v1 protocol - run-time library
- Qt component to allow applications to make use of the Wayland
- wlr-layer-shell-unstable-v1 protocol.
- .
- This package includes the library.
-
-Package: qml6-module-layershell
-Architecture: any
-Section: libs
-Depends: liblayershellqtinterface6 (= ${binary:Version}),
-Recommends: qt6-layer-shell (= ${binary:Version}),
-Description: use the Wayland wlr-layer-shell-unstable-v1 protocol - run-time library
- Qml module to allow applications to make use of the Wayland
- wlr-layer-shell-unstable-v1 protocol.
- .
- This package includes the qml module.
+Architecture: all
+Depends: layer-shell-qt (>= 6.5), ${misc:Depends}
+Description: Transitional package migrating to upstream layer-shell-qt
+ This package is empty. It exists only to transition systems from the
+ downstream qt6-layer-shell package to the upstream layer-shell-qt
+ package. It may be safely removed.
