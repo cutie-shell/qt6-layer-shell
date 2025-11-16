@@ -8,6 +8,9 @@ Standards-Version: 4.5.1
 Package: qt6-layer-shell
 Architecture: all
 Depends: layer-shell-qt (>= 6.5), ${misc:Depends}
+Breaks: liblayershellqtinterface6 (<< 6.5~)
+Replaces: liblayershellqtinterface6 (<< 6.5~)
+Conflicts: liblayershellqtinterface6 (<< 6.5~)
 Description: Transitional package migrating to upstream layer-shell-qt
  This package is empty. It exists only to transition systems from the
  downstream qt6-layer-shell package to the upstream layer-shell-qt
